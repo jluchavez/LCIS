@@ -1,0 +1,86 @@
+{% extends 'base.html' %} {% block title %}Patients List{% endblock %} {% block
+    content %}
+    <html lang="es">
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    </head>
+    <body>
+    <br>
+    
+    
+    
+    <div class="container">
+        <div class="row bg-white text-dark shadow p-2 mb-5 bg-white rounded-3 p-3">
+            <div class="col">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                  <li class="breadcrumb-item">Home</li>
+                  <li class="breadcrumb-item active" aria-current="page">Patients</li>
+                </ol>
+              </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col lg-12">
+                <div class="card mb-4 bg-white text-dark shadow p-2 mb-5 bg-white rounded-3 p-3"  style="height: 100%;">
+                    <div class="jumbotron p-5">
+                        <div class="row justify-content-between">
+                            <div class="col-6">
+                                <h4 class="card-title">
+                                    Patients List
+                                </h4>
+                            </div>
+                            <div class="col-3">
+                                <form method="POST" class="input-group mb-3">
+                                    <input type="text" name="search" id="search" autofocus="autofocus" class="form-control" placeholder="Search" aria-label="search" aria-describedby="button-addon2">
+                                    <input type="submit" value="Search" class="btn btn-outline-success" id="button-addon2" formaction="/admin/patients/search_patient">
+                                </form>
+                            </div><hr>
+                        </div>
+                        {% if patients_list %}
+                        <table class="table table-hover table dark" id="data">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">ID</th>
+                                    <th class="text-center">Last Name</th>
+                                    <th class="text-center">First Name</th>
+                                    <th class="text-center">Middle Name</th>
+                                    <th class="text-center">Gender</th>
+                                    <th class="text-center">Age</th>
+                                    <th class="text-center">Contact</th>
+                                    <th class="text-center">Date Added</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for patient in patients_list %}
+                                <tr>
+                                    <td class="text-center">{{ patient.id }}</td>
+                                    <td class="text-center">{{ patient.lname }}</td>
+                                    <td class="text-center">{{ patient.fname }}</td>
+                                    <td class="text-center">{{ patient.mname }}</td>
+                                    <td class="text-center">{{ patient.gender }}</td>
+                                    <td class="text-center">{{ patient.age }}</td>
+                                    <td class="text-center">{{ patient.phone }}</td>
+                                    <td class="text-center">{{ patient.date }}</td>
+                                    <td width="150" class="text-center">
+                                        <a href="/admin/patients/edit/{{patient.id}}"><i style="color: black; font-size:20px;" class="bi bi-eye "></i></a>&emsp;
+                                        <a href="/admin/patients/records/{{patient.id}}"><i class="bi bi-folder" style="color: black; font-size:20px;"></i></a>&emsp;
+                                        <a href="/admin/patients/delete/{{patient.id}}" value="delete" onclick="return confirm('Are you sure you want to delete?')"><i style="color: black; font-size:20px;" class="bi bi-trash3"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+                    
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    
+    </form>
+    </body>
+    </html>
+    {% endblock %}

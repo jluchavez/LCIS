@@ -1,0 +1,73 @@
+<br><br><br>
+{% extends "base.html" %} {% block title %}Sign Up{% endblock %}
+{% block content %}
+<body style="background-image: url('/static/assets/bg1.svg'), url('/static/assets/bg2.svg'); background-position: left 100%, right 100%; background-repeat: no-repeat; background-size: 600px, 600px;">
+<section class="d-block">
+  <div class="container">
+      <div class="row d-flex justify-content-center">
+          <div class="col-md-4">
+              <div class="card mb-4 bg-white text-dark shadow p-2 mb-5 bg-white rounded-3 p-3">
+                  <div class="jumbotron p-4">
+                    <form method="POST">
+                      <h3 align="center">Sign Up</h3> 
+                      <br>
+                      <div class="form-group">
+                        <label for="email"></label>
+                        <input
+                          type="email"
+                          class="form-control bg-light"
+                          id="email"
+                          name="email"
+                          placeholder="Email Address"
+                          required
+                        />
+                      </div>
+                      <br>
+                      <div class="form-group">
+                        <label for="username"></label>
+                        <input
+                          type="text"
+                          class="form-control bg-light"
+                          id="username"
+                          name="username"
+                          placeholder="Username"
+                          required
+                        />
+                      </div>
+                      <br>
+                      <div class="form-group">
+                        <label for="password1"></label>
+                        <input
+                          type="password"
+                          class="form-control bg-light"
+                          id="password1"
+                          name="password1"
+                          placeholder="Password"
+                          required
+                        />
+                      </div>
+                      <br>
+                      <div class="form-group">
+                        <label for="password2"></label>
+                        <input
+                          type="password"
+                          class="form-control bg-light"
+                          id="password2"
+                          name="password2"
+                          placeholder="Confirm Password"
+                          required
+                        />
+                      </div>
+                      <br>
+                      <div class="form-group">
+                        <input type="submit" class="btn btn-success shadow" style="width:100%;" value="Sign up">
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</section>
+</body>
+{% endblock %}

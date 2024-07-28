@@ -1,0 +1,166 @@
+{% extends 'base.html' %} {% block title %}User Records{% endblock %} {% block
+content %}
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+    <br>
+<div class="container">
+    <div class="row bg-white text-dark shadow p-2 mb-5 bg-white rounded-3 p-3">
+        <div class="col">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item">Home</li>
+              <li class="breadcrumb-item">User</li>
+              <li class="breadcrumb-item active" aria-current="page">User Records</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+            <div class="card mb-4 bg-white text-dark shadow p-2 mb-5 bg-white rounded-3 p-3"  style="height: 100%;">
+                <div class="jumbotron p-4">
+                    <div class="card-body">
+                        <div class="row justify-content-between">
+                            <div class="col">
+                                <h4 class="card-title">
+                                    Medical Records
+                                </h4>
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-outline-success btn float-end" data-bs-toggle="modal" data-bs-target="#myModal">New Record</button>
+                            </div>
+                        
+                        </br></br></br><hr>
+
+                        <div class="row justify-content-between">
+                            
+                            <br>
+                            <br>
+                            <table class="table table-hover table dark">
+                                <tr>
+                                    <th class="text-center">Date</th>
+                                    <th class="text-center">Name of Disease</th>
+                                    <th class="text-center">Note Type</th>
+                                    <th class="text-center">Doctor</th>
+                                    <th class="text-center">Validated</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                                {% for record in record_list %}
+                                <tr>
+                                    <td class="text-center">{{ record.date }}</td>
+                                    <td class="text-center">{{ record.name }}</td>
+                                    <td class="text-center">{{ record.note }}</td>
+                                    <td class="text-center">{{ record.doctor }}</td>
+                                    <td class="text-center">{{ record.validated }}</td>
+                                    <td width="150" class="text-center">
+                                        <a href="{{url_for('views.download', id=record.id)}}" value="download"><i style="color: black; font-size:20px;" class="bi bi-download"></i></a>
+            
+                                    </td>
+                                </tr>
+                                {% endfor %}
+            
+                            </table>
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+<form method="POST" action="" enctype="multipart/form-data">
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="jumbotron p-4">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">New Record</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                   
+                    <div class="form-group">
+                        <label for="name">Name of Disease</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="name"
+                                name="name"
+                                placeholder="Name"
+                                required
+                        />
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="note">Note Type</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="note"
+                                name="note"
+                                placeholder="Note Type"
+                                required
+                        />
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="doctor">Dr's Name</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="doctor"
+                                name="doctor"
+                                placeholder="Doctor"
+                                required
+                        />
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="validated">Validated</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="validated"
+                                name="validated"
+                                value="No"
+                                default="No"
+                                required
+                                disabled
+                        />
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="file">Upload Record</label>
+                            <input
+                                    type="file"
+                                    class="form-control"
+                                    id="file"
+                                    name="file"
+                                    required
+                                    accept="application/pdf"
+                            />
+
+                    </div>
+                </div>
+                <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger">Cancel</button>
+                <button type="submit" class="btn btn-success float-end">Add</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+</body>
+</html>
+{% endblock %}
